@@ -9,14 +9,14 @@
     <meta name="description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
 TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Triggery OnUpdate">
-<meta property="og:url" content="http://matkulcik.eu/Hexo/2017/01/31/TST/index.html">
+<meta property="og:title" content="Prílady na triggery">
+<meta property="og:url" content="http://matkulcik.eu/Hexo/2017/01/31/priklad/index.html">
 <meta property="og:site_name" content="Databázové triggre V PostgreSQL">
 <meta property="og:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
 TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
-<meta property="og:updated_time" content="2017-02-07T00:17:55.501Z">
+<meta property="og:updated_time" content="2017-02-07T13:39:28.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Triggery OnUpdate">
+<meta name="twitter:title" content="Prílady na triggery">
 <meta name="twitter:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
 TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
     
@@ -38,7 +38,7 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
         
     
     <!-- title -->
-    <title>Triggery OnUpdate</title>
+    <title>Prílady na triggery</title>
     <!-- styles -->
     <link rel="stylesheet" href="/Hexo/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Hexo/lib/meslo-LG/styles.css">
@@ -91,16 +91,16 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&text=Triggery OnUpdate"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&is_video=false&description=Triggery OnUpdate"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Triggery OnUpdate&body=Check out this article: http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&name=Triggery OnUpdate&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&text=Prílady na triggery"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&is_video=false&description=Prílady na triggery"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Prílady na triggery&body=Check out this article: http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&name=Prílady na triggery&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -117,7 +117,7 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <header>
         
     <h1 class="posttitle" itemprop="name headline">
-        Triggery OnUpdate
+        Prílady na triggery
     </h1>
 
 
@@ -159,7 +159,7 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tabulka(<span class="keyword">id</span> <span class="built_in">int</span>);</div></pre></td></tr></table></figure>
 <p>Zavolanie triggera:</p>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> TRIGGER tabulka_oznam BEFORE INSERT <span class="keyword">ON</span> tabulka EXECUTE</div><div class="line"><span class="function"><span class="keyword">PROCEDURE</span> <span class="title">oznam_po_zavolani</span><span class="params">()</span>;</span></div></pre></td></tr></table></figure>
-<p>Pred pokusom o INSERT dát trigger zavolá funkciu a <strong>plpy.notice</strong> vypíše nastavený text:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ttable <span class="keyword">VALUES</span>(<span class="number">1</span>);</div><div class="line">NOTICE: Trigger bol spustený!</div><div class="line">CONTEXT: PL/Python function "oznam_po_zavolani"</div><div class="line"><span class="keyword">INSERT</span> <span class="number">0</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>Pred pokusom o INSERT dát trigger zavolá funkciu a <strong>plpy.notice</strong> vypíše nastavený text:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> tabulka <span class="keyword">VALUES</span>(<span class="number">1</span>);</div><div class="line">NOTICE: Trigger bol spustený!</div><div class="line">CONTEXT: PL/Python function "oznam_po_zavolani"</div><div class="line"><span class="keyword">INSERT</span> <span class="number">0</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
 <h2 id="Execute-ONLINE-SQLfiddle"><a href="#Execute-ONLINE-SQLfiddle" class="headerlink" title="Execute ONLINE - SQLfiddle"></a>Execute ONLINE - SQLfiddle</h2><p>Live code edit<br>Odkaz na SQLfidddle:<br><a href="http://sqlfiddle.com/#!9/dcb16/1" target="_blank" rel="external">http://sqlfiddle.com/#!9/dcb16/1</a></p>
 <p>Momentalne vsak nejde Postgres :/<br>Asi zatazeny server lebo ani MySQL nespoluracuje… verim  na napravu</p>
 
@@ -195,16 +195,16 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&text=Triggery OnUpdate"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&is_video=false&description=Triggery OnUpdate"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Triggery OnUpdate&body=Check out this article: http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&title=Triggery OnUpdate"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/TST/&name=Triggery OnUpdate&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&text=Prílady na triggery"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&is_video=false&description=Prílady na triggery"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Prílady na triggery&body=Check out this article: http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&name=Prílady na triggery&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

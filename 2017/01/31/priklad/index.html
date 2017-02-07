@@ -7,18 +7,18 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
-TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
+TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.noti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prílady na triggery">
 <meta property="og:url" content="http://matkulcik.eu/skola/2017/01/31/priklad/index.html">
 <meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
 <meta property="og:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
-TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
-<meta property="og:updated_time" content="2017-02-07T13:39:28.174Z">
+TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.noti">
+<meta property="og:updated_time" content="2017-02-07T19:39:10.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prílady na triggery">
 <meta name="twitter:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
-TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
+TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.noti">
     
     
         
@@ -153,7 +153,8 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
             <p>Obsah článku:</p>
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Trigger"><span class="toc-number">1.</span> <span class="toc-text">Trigger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pouzitie-triggera-v-jazyku-PL-Python"><span class="toc-number">1.1.</span> <span class="toc-text">Použitie triggera v jazyku PL/Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Execute-ONLINE-SQLfiddle"><span class="toc-number">2.</span> <span class="toc-text">Execute ONLINE - SQLfiddle</span></a></li></ol>
         </div>
-        <p>Praktické príklady pre Datábazové triggery v PostgreSQL</p>
+        <hr>
+<p>Praktické príklady pre Datábazové triggery v PostgreSQL</p>
 <h2 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h2><h3 id="Pouzitie-triggera-v-jazyku-PL-Python"><a href="#Pouzitie-triggera-v-jazyku-PL-Python" class="headerlink" title="Použitie triggera v jazyku PL/Python"></a>Použitie triggera v jazyku PL/Python</h3><p>Vytvorenie triggera:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> oznam_po_zavolani()</div><div class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span></div><div class="line"><span class="keyword">AS</span> $$</div><div class="line">plpy.notice(<span class="string">'Trigger bol spustený!'</span>)</div><div class="line">$$ <span class="keyword">LANGUAGE</span> plpythonu;</div></pre></td></tr></table></figure></p>
 <p>Tabuľky:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tabulka(<span class="keyword">id</span> <span class="built_in">int</span>);</div></pre></td></tr></table></figure>

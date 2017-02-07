@@ -1021,9 +1021,7 @@ body {
 .project-list .project-item {
   margin-bottom: 5px;
 }
-.toc-number {
-  display: none;
-}
+
 article header .posttitle {
   margin-top: 0;
   margin-bottom: 0;
@@ -1152,9 +1150,7 @@ article .content .caption {
     content: "|";
   }
 }
-.toc-number {
-  display: none;
-}
+
 .blog-post-comments {
   margin-top: 4rem;
 }

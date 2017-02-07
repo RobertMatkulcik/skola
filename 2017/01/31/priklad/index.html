@@ -10,7 +10,7 @@
 TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prílady na triggery">
-<meta property="og:url" content="http://matkulcik.eu/Hexo/2017/01/31/priklad/index.html">
+<meta property="og:url" content="http://matkulcik.eu/skola/2017/01/31/priklad/index.html">
 <meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
 <meta property="og:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
 TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.notic">
@@ -23,32 +23,32 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     
         
           
-              <link rel="shortcut icon" href="/Hexo/images/favicon.ico">
+              <link rel="shortcut icon" href="/skola/images/favicon.ico">
           
         
         
           
-            <link rel="icon" type="image/png" href="/Hexo/images/favicon-192x192.png" sizes="192x192">
+            <link rel="icon" type="image/png" href="/skola/images/favicon-192x192.png" sizes="192x192">
           
         
         
           
-            <link rel="apple-touch-icon" sizes="180x180" href="/Hexo/images/apple-touch-icon.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/skola/images/apple-touch-icon.png">
           
         
     
     <!-- title -->
     <title>Prílady na triggery</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/Hexo/lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Hexo/lib/meslo-LG/styles.css">
-    <link rel="stylesheet" href="/Hexo/lib/justified-gallery/justifiedGallery.min.css">
-    <link rel="stylesheet" href="/Hexo/css/style.css">
+    <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/skola/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/skola/css/style.css">
     <!-- rss -->
     
     
     <!-- jquery -->
-    <script src="/Hexo/lib/jquery/jquery.min.js"></script>
+    <script src="/skola/lib/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -61,13 +61,13 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <span id="nav">
       <ul>
          
-          <li><a href="/Hexo/">Home</a></li>
+          <li><a href="/skola/">Home</a></li>
          
-          <li><a href="/Hexo/tags/teoria">Teória</a></li>
+          <li><a href="/skola/tags/teoria">Teória</a></li>
          
-          <li><a href="/Hexo/tags/priklady">Prílady</a></li>
+          <li><a href="/skola/tags/priklady">Prílady</a></li>
          
-          <li><a href="/Hexo/archives/">Archív</a></li>
+          <li><a href="/skola/archives/">Archív</a></li>
          
           <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
         
@@ -77,7 +77,7 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Hexo/2017/02/05/Teoria/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/skola/2017/02/05/Teoria/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
@@ -91,16 +91,16 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&text=Prílady na triggery"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&is_video=false&description=Prílady na triggery"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Prílady na triggery&body=Check out this article: http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&name=Prílady na triggery&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/01/31/priklad/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&text=Prílady na triggery"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&is_video=false&description=Prílady na triggery"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Prílady na triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/01/31/priklad/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&name=Prílady na triggery&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -139,7 +139,7 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
             
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/Hexo/tags/priklady/">priklady</a>
+        <a class="tag-link" href="/skola/tags/priklady/">priklady</a>
     </div>
 
 
@@ -176,13 +176,13 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/Hexo/">Home</a></li>
+          <li><a href="/skola/">Home</a></li>
          
-          <li><a href="/Hexo/tags/teoria">Teória</a></li>
+          <li><a href="/skola/tags/teoria">Teória</a></li>
          
-          <li><a href="/Hexo/tags/priklady">Prílady</a></li>
+          <li><a href="/skola/tags/priklady">Prílady</a></li>
          
-          <li><a href="/Hexo/archives/">Archív</a></li>
+          <li><a href="/skola/archives/">Archív</a></li>
          
           <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
         
@@ -195,16 +195,16 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&text=Prílady na triggery"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&is_video=false&description=Prílady na triggery"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Prílady na triggery&body=Check out this article: http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/Hexo/Hexo/2017/01/31/priklad/&name=Prílady na triggery&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/01/31/priklad/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&text=Prílady na triggery"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&is_video=false&description=Prílady na triggery"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Prílady na triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/01/31/priklad/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&title=Prílady na triggery"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/01/31/priklad/&name=Prílady na triggery&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -230,13 +230,13 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
     <nav>
       <ul>
          
-          <li><a href="/Hexo/">Home</a></li>
+          <li><a href="/skola/">Home</a></li>
          
-          <li><a href="/Hexo/tags/teoria">Teória</a></li>
+          <li><a href="/skola/tags/teoria">Teória</a></li>
          
-          <li><a href="/Hexo/tags/priklady">Prílady</a></li>
+          <li><a href="/skola/tags/priklady">Prílady</a></li>
          
-          <li><a href="/Hexo/archives/">Archív</a></li>
+          <li><a href="/skola/archives/">Archív</a></li>
          
           <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
         
@@ -245,8 +245,8 @@ TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR R
   </div>
 </footer>
 
-    <script src="/Hexo/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
-<script src="/Hexo/js/main.js"></script>
+    <script src="/skola/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/skola/js/main.js"></script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">

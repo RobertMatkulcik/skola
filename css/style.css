@@ -1149,9 +1149,7 @@ article .content .caption {
     content: "|";
   }
 }
-.toc-number {
-  display: none;
-}
+
 .blog-post-comments {
   margin-top: 4rem;
 }

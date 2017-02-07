@@ -6,13 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="article">
-<meta property="og:title" content="priklad2">
-<meta property="og:url" content="http://matkulcik.eu/skola/2017/02/07/priklad2/index.html">
+    <meta name="description" content="Projekt elektronickej učebnice pre diplomovú prácu zameranú na tému vložené procedúry a triggre v databázovom serveri PostgresSQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="priklad3">
+<meta property="og:url" content="http://matkulcik.eu/skola/2017/02/07/priklad3/index.html">
 <meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
-<meta property="og:updated_time" content="2017-02-07T19:39:10.370Z">
+<meta property="og:description" content="Projekt elektronickej učebnice pre diplomovú prácu zameranú na tému vložené procedúry a triggre v databázovom serveri PostgresSQL">
+<meta property="og:updated_time" content="2017-02-07T21:29:35.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="priklad2">
+<meta name="twitter:title" content="priklad3">
+<meta name="twitter:description" content="Projekt elektronickej učebnice pre diplomovú prácu zameranú na tému vložené procedúry a triggre v databázovom serveri PostgresSQL">
     
     
         
@@ -32,7 +35,7 @@
         
     
     <!-- title -->
-    <title>priklad2</title>
+    <title>priklad3</title>
     <!-- styles -->
     <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
@@ -71,10 +74,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/skola/2017/02/07/priklad3/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/skola/2017/02/07/priklad4/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/skola/2017/02/06/trigger-ovocie/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/skola/2017/02/07/priklad2/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -87,16 +90,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&text=priklad2"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&is_video=false&description=priklad2"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=priklad2&body=Check out this article: http://matkulcik.eu/skola/skola/2017/02/07/priklad2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&name=priklad2&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&text=priklad3"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&is_video=false&description=priklad3"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=priklad3&body=Check out this article: http://matkulcik.eu/skola/skola/2017/02/07/priklad3/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&name=priklad3&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -113,7 +116,7 @@
     <header>
         
     <h1 class="posttitle" itemprop="name headline">
-        priklad2
+        priklad3
     </h1>
 
 
@@ -128,16 +131,11 @@
       </span>
             
     <div class="postdate">
-        <time datetime="2017-02-07T18:07:37.000Z" itemprop="datePublished">07-02-2017</time>
+        <time datetime="2017-02-07T21:29:35.000Z" itemprop="datePublished">07-02-2017</time>
     </div>
 
 
             
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/skola/tags/priklady/">priklady</a>
-    </div>
-
 
         </div>
     </header>
@@ -149,8 +147,7 @@
             <p>Obsah článku:</p>
                     
         </div>
-        <hr>
-
+        
     </div>
 </article>
 
@@ -183,16 +180,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&text=priklad2"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&is_video=false&description=priklad2"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=priklad2&body=Check out this article: http://matkulcik.eu/skola/skola/2017/02/07/priklad2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&title=priklad2"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad2/&name=priklad2&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&text=priklad3"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&is_video=false&description=priklad3"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=priklad3&body=Check out this article: http://matkulcik.eu/skola/skola/2017/02/07/priklad3/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&title=priklad3"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/02/07/priklad3/&name=priklad3&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

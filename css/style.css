@@ -1149,7 +1149,9 @@ article .content .caption {
     content: "|";
   }
 }
-
+.toc-number {
+  display: none;
+}
 .blog-post-comments {
   margin-top: 4rem;
 }
@@ -1330,4 +1332,10 @@ pre code {
   text-align: right;
   padding-right: 20px;
   display: none;
+}
+ol.toc {
+  list-style-type: none;
+}
+ol.toc-child {
+  list-style-type: none;
 }

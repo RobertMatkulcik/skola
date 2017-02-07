@@ -1333,7 +1333,3 @@ pre code {
   display: none;
 }
 
-ol.toc,
-ol.toc-child{
-  list-style-type: none;
-}

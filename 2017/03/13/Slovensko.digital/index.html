@@ -20,7 +20,7 @@ Jednoduchá registrácia na prístup k SQL rozhraniu a API. Kompletné dáta zdr
 Verejne dostupne štatne databazy
 Datahub v BETA
 Jednoduchá registrácia na prístup k SQL rozhraniu a API. Kompletné dáta zdr">
-<meta property="og:updated_time" content="2017-03-13T21:23:23.864Z">
+<meta property="og:updated_time" content="2017-03-15T14:33:05.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OPEN DATA DB">
 <meta name="twitter:description" content="Otvorené dátaSLOVENSKO.digitalPripojenie do databazy obsahujucu OPEN DATA:
@@ -191,64 +191,7 @@ Jednoduchá registrácia na prístup k SQL rozhraniu a API. Kompletné dáta zdr
 </ul>
 </li>
 </ul>
-<h1 id="Ukazkove-selekty-v-DB"><a href="#Ukazkove-selekty-v-DB" class="headerlink" title="Ukazkove selekty v DB"></a>Ukazkove selekty v DB</h1><pre><code class="sql">SELECT
-  c.name,
-  EXTRACT(YEAR FROM established_on),
-  COUNT(*)
--- vyhľadaj hlavné kódy aktivít podľa rokov založenia
-FROM rpo.organizations o
-  -- zo všetkých právnických osôb
-  JOIN rpo.main_activity_codes c
-    ON o.main_activity_code_id = c.id
-GROUP BY 1, 2
-ORDER BY 3 DESC
--- zoradené od najčastejších
-LIMIT 5
-
-
-
-/*Príklad: Kto podľa centrálneho registra podpisuje najčastejšie zmluvy v sobotu alebo v nedeľu?*/
-
-
-
-SELECT
-  contracting_authority_name,
-  COUNT(*)
-FROM crz.contracts
-WHERE EXTRACT(DOW FROM signed_on) IN (6, 0)
--- sobota alebo nedeľa
-GROUP BY contracting_authority_name
-ORDER BY 2 DESC
-
-SELECT
-  amount,
-  name
-FROM debt_ranges
-  JOIN debtors ON debtors.id = debt_ranges.debtor_id
-ORDER BY amount DESC
-
-
-/*Priklad: ukaze pocet dlznikov ktorý sa v DB opakuju viac krat*/
-SELECT
-  name,
-  count(*) AS vsetko
-FROM debtors
-GROUP BY name
-HAVING count(*) &gt; 1
-ORDER BY vsetko DESC
-
-SELECT
-  name,
-  amount
-FROM debt_ranges
-  JOIN debtors ON debtors.id = debt_ranges.debtor_id
-WHERE name LIKE &#39;KOVÁČ%&#39;
-ORDER BY amount DESC
-
-
-/*Ukaz velkost DB*/
-select pg_size_pretty(pg_database_size(current_database()));
-</code></pre>
+<h1 id="Ukazkove-selekty-v-DB"><a href="#Ukazkove-selekty-v-DB" class="headerlink" title="Ukazkove selekty v DB"></a>Ukazkove selekty v DB</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span></div><div class="line">  c.name,</div><div class="line">  <span class="keyword">EXTRACT</span>(<span class="keyword">YEAR</span> <span class="keyword">FROM</span> established_on),</div><div class="line">  <span class="keyword">COUNT</span>(*)</div><div class="line"><span class="comment">-- vyhľadaj hlavné kódy aktivít podľa rokov založenia</span></div><div class="line"><span class="keyword">FROM</span> rpo.organizations o</div><div class="line">  <span class="comment">-- zo všetkých právnických osôb</span></div><div class="line">  <span class="keyword">JOIN</span> rpo.main_activity_codes c</div><div class="line">    <span class="keyword">ON</span> o.main_activity_code_id = c.id</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="number">1</span>, <span class="number">2</span></div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">3</span> <span class="keyword">DESC</span></div><div class="line"><span class="comment">-- zoradené od najčastejších</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">5</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*Príklad: Kto podľa centrálneho registra podpisuje najčastejšie zmluvy v sobotu alebo v nedeľu?*/</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">  contracting_authority_name,</div><div class="line">  <span class="keyword">COUNT</span>(*)</div><div class="line"><span class="keyword">FROM</span> crz.contracts</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">EXTRACT</span>(DOW <span class="keyword">FROM</span> signed_on) <span class="keyword">IN</span> (<span class="number">6</span>, <span class="number">0</span>)</div><div class="line"><span class="comment">-- sobota alebo nedeľa</span></div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> contracting_authority_name</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">2</span> <span class="keyword">DESC</span></div><div class="line"></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">  amount,</div><div class="line">  <span class="keyword">name</span></div><div class="line"><span class="keyword">FROM</span> debt_ranges</div><div class="line">  <span class="keyword">JOIN</span> debtors <span class="keyword">ON</span> debtors.id = debt_ranges.debtor_id</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> amount <span class="keyword">DESC</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*Priklad: ukaze pocet dlznikov ktorý sa v DB opakuju viac krat*/</span></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">  <span class="keyword">name</span>,</div><div class="line">  <span class="keyword">count</span>(*) <span class="keyword">AS</span> vsetko</div><div class="line"><span class="keyword">FROM</span> debtors</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">name</span></div><div class="line"><span class="keyword">HAVING</span> <span class="keyword">count</span>(*) &gt; <span class="number">1</span></div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> vsetko <span class="keyword">DESC</span></div><div class="line"></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">  <span class="keyword">name</span>,</div><div class="line">  amount</div><div class="line"><span class="keyword">FROM</span> debt_ranges</div><div class="line">  <span class="keyword">JOIN</span> debtors <span class="keyword">ON</span> debtors.id = debt_ranges.debtor_id</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span> <span class="string">'KOVÁČ%'</span></div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> amount <span class="keyword">DESC</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*Ukaz velkost DB*/</span></div><div class="line"><span class="keyword">select</span> pg_size_pretty(pg_database_size(current_database()));</div></pre></td></tr></table></figure>
 
     </div>
 </article>

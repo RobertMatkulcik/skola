@@ -7,30 +7,18 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
-TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:
-CREATE OR REPLACE FUNCTION oznam_po_zavolani()
-RETURNS TRIGGER
-AS $$
-plpy.notic">
+TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.noti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prílady na triggery v Pl/Python">
 <meta property="og:url" content="http://matkulcik.eu/skola/2017/01/31/priklad/index.html">
 <meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
 <meta property="og:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
-TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:
-CREATE OR REPLACE FUNCTION oznam_po_zavolani()
-RETURNS TRIGGER
-AS $$
-plpy.notic">
-<meta property="og:updated_time" content="2017-02-07T21:38:27.601Z">
+TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.noti">
+<meta property="og:updated_time" content="2017-03-15T18:07:39.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prílady na triggery v Pl/Python">
 <meta name="twitter:description" content="Praktické príklady pre Datábazové triggery v PostgreSQL
-TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:
-CREATE OR REPLACE FUNCTION oznam_po_zavolani()
-RETURNS TRIGGER
-AS $$
-plpy.notic">
+TriggerPoužitie triggera v jazyku PL/PythonVytvorenie triggera:12345CREATE OR REPLACE FUNCTION oznam_po_zavolani()RETURNS TRIGGERAS $$plpy.noti">
     
     
         
@@ -167,23 +155,13 @@ plpy.notic">
         </div>
         <hr>
 <p>Praktické príklady pre Datábazové triggery v PostgreSQL</p>
-<h2 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h2><h3 id="Pouzitie-triggera-v-jazyku-PL-Python"><a href="#Pouzitie-triggera-v-jazyku-PL-Python" class="headerlink" title="Použitie triggera v jazyku PL/Python"></a>Použitie triggera v jazyku PL/Python</h3><p>Vytvorenie triggera:</p>
-<pre><code>CREATE OR REPLACE FUNCTION oznam_po_zavolani()
-RETURNS TRIGGER
-AS $$
-plpy.notice(&#39;Trigger bol spustený!&#39;)
-$$ LANGUAGE plpythonu;
-</code></pre><p>Tabuľky:</p>
-<pre><code>CREATE TABLE tabulka(id int);
-</code></pre><p>Zavolanie triggera:</p>
-<pre><code>CREATE TRIGGER tabulka_oznam BEFORE INSERT ON tabulka EXECUTE
-PROCEDURE oznam_po_zavolani();
-</code></pre><p>Pred pokusom o INSERT dát trigger zavolá funkciu a <strong>plpy.notice</strong> vypíše nastavený text:</p>
-<pre><code>INSERT INTO tabulka VALUES(1);
-NOTICE: Trigger bol spustený!
-CONTEXT: PL/Python function &quot;oznam_po_zavolani&quot;
-INSERT 0 1
-</code></pre><h2 id="Execute-ONLINE-SQLfiddle"><a href="#Execute-ONLINE-SQLfiddle" class="headerlink" title="Execute ONLINE - SQLfiddle"></a>Execute ONLINE - SQLfiddle</h2><p>Live code edit<br>Odkaz na SQLfidddle:<br><a href="http://sqlfiddle.com/#!9/dcb16/1" target="_blank" rel="external">http://sqlfiddle.com/#!9/dcb16/1</a></p>
+<h2 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h2><h3 id="Pouzitie-triggera-v-jazyku-PL-Python"><a href="#Pouzitie-triggera-v-jazyku-PL-Python" class="headerlink" title="Použitie triggera v jazyku PL/Python"></a>Použitie triggera v jazyku PL/Python</h3><p>Vytvorenie triggera:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> oznam_po_zavolani()</div><div class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span></div><div class="line"><span class="keyword">AS</span> $$</div><div class="line">plpy.notice(<span class="string">'Trigger bol spustený!'</span>)</div><div class="line">$$ <span class="keyword">LANGUAGE</span> plpythonu;</div></pre></td></tr></table></figure></p>
+<p>Tabuľky:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tabulka(<span class="keyword">id</span> <span class="built_in">int</span>);</div></pre></td></tr></table></figure>
+<p>Zavolanie triggera:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> tabulka_oznam <span class="keyword">BEFORE</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> tabulka <span class="keyword">EXECUTE</span></div><div class="line"><span class="keyword">PROCEDURE</span> oznam_po_zavolani();</div></pre></td></tr></table></figure>
+<p>Pred pokusom o INSERT dát trigger zavolá funkciu a <strong>plpy.notice</strong> vypíše nastavený text:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> tabulka <span class="keyword">VALUES</span>(<span class="number">1</span>);</div><div class="line">NOTICE: Trigger bol spustený!</div><div class="line">CONTEXT: PL/Python function "oznam_po_zavolani"</div><div class="line"><span class="keyword">INSERT</span> <span class="number">0</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<h2 id="Execute-ONLINE-SQLfiddle"><a href="#Execute-ONLINE-SQLfiddle" class="headerlink" title="Execute ONLINE - SQLfiddle"></a>Execute ONLINE - SQLfiddle</h2><p>Live code edit<br>Odkaz na SQLfidddle:<br><a href="http://sqlfiddle.com/#!9/dcb16/1" target="_blank" rel="external">http://sqlfiddle.com/#!9/dcb16/1</a></p>
 <p>Momentalne vsak nejde Postgres :/<br>Asi zatazeny server lebo ani MySQL nespoluracuje… verim  na napravu</p>
 
     </div>

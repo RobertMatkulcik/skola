@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang=SK>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Audit zmienIde o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat
+struktura DB - DiagramVytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestnan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="audit_trigger">
+<meta property="og:url" content="http://matkulcik.eu/skola/2017/03/16/audit-trigger/index.html">
+<meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
+<meta property="og:description" content="Audit zmienIde o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat
+struktura DB - DiagramVytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestnan">
+<meta property="og:updated_time" content="2017-03-16T22:19:02.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="audit_trigger">
+<meta name="twitter:description" content="Audit zmienIde o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat
+struktura DB - DiagramVytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestnan">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/skola/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/skola/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/skola/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>audit_trigger</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/skola/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/skola/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/skola/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Prílady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/skola/2017/03/13/Slovensko.digital/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&text=audit_trigger"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&is_video=false&description=audit_trigger"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=audit_trigger&body=Check out this article: http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&name=audit_trigger&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Audit-zmien"><span class="toc-number">1.</span> <span class="toc-text">Audit zmien</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#struktura-DB-Diagram"><span class="toc-number">1.1.</span> <span class="toc-text">struktura DB - Diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vytvorenie-DB-a-tabuliek"><span class="toc-number">1.2.</span> <span class="toc-text">Vytvorenie DB a tabuliek</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        
+    <h1 class="posttitle" itemprop="name headline">
+        audit_trigger
+    </h1>
+
+
+
+        <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+            
+            Procedúry a spúšťače v PostgreSQL
+            
+        </span>
+      </span>
+            
+    <div class="postdate">
+        <time datetime="2017-03-16T22:15:39.000Z" itemprop="datePublished">16-03-2017</time>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/skola/tags/priklady/">priklady</a>
+    </div>
+
+
+        </div>
+    </header>
+    
+
+    <div class="content" itemprop="articleBody">
+        <!--Table of content generator-->
+        <div id="toc">
+            <p>Obsah článku:</p>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Audit-zmien"><span class="toc-number">1.</span> <span class="toc-text">Audit zmien</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#struktura-DB-Diagram"><span class="toc-number">1.1.</span> <span class="toc-text">struktura DB - Diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vytvorenie-DB-a-tabuliek"><span class="toc-number">1.2.</span> <span class="toc-text">Vytvorenie DB a tabuliek</span></a></li></ol></li></ol>
+        </div>
+        <h2 id="Audit-zmien"><a href="#Audit-zmien" class="headerlink" title="Audit zmien"></a>Audit zmien</h2><p>Ide o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat</p>
+<h3 id="struktura-DB-Diagram"><a href="#struktura-DB-Diagram" class="headerlink" title="struktura DB - Diagram"></a>struktura DB - Diagram</h3><h3 id="Vytvorenie-DB-a-tabuliek"><a href="#Vytvorenie-DB-a-tabuliek" class="headerlink" title="Vytvorenie DB a tabuliek"></a>Vytvorenie DB a tabuliek</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> vyplaty (</div><div class="line">  meno_zamestnanca <span class="built_in">TEXT</span> PRIMARY <span class="keyword">KEY</span>,</div><div class="line">  plat   <span class="built_in">INTEGER</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> vyplaty_zmeny_log (</div><div class="line">  pozmenene_uzivatelom <span class="built_in">TEXT</span>      <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_USER</span>,</div><div class="line">  datum_zmeny <span class="keyword">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  druh_operacie  <span class="built_in">TEXT</span>,</div><div class="line">  meno_zamestnanca   <span class="built_in">TEXT</span>,</div><div class="line">  stary_plat <span class="built_in">INTEGER</span>,</div><div class="line">  novy_plat <span class="built_in">INTEGER</span></div><div class="line">);</div></pre></td></tr></table></figure>
+    </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Prílady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Audit-zmien"><span class="toc-number">1.</span> <span class="toc-text">Audit zmien</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#struktura-DB-Diagram"><span class="toc-number">1.1.</span> <span class="toc-text">struktura DB - Diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vytvorenie-DB-a-tabuliek"><span class="toc-number">1.2.</span> <span class="toc-text">Vytvorenie DB a tabuliek</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&text=audit_trigger"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&is_video=false&description=audit_trigger"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=audit_trigger&body=Check out this article: http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&title=audit_trigger"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/03/16/audit-trigger/&name=audit_trigger&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Róbert Matkulčík
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Prílady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/skola/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/skola/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

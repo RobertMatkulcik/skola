@@ -566,7 +566,7 @@ body {
 #header #logo {
   display: inline-block;
   float: left;
-  margin-right: 20px;
+  margin-right: 10px;
   background-repeat: no-repeat;
   background-size: 6em !important;
   width: 6.1em !important;

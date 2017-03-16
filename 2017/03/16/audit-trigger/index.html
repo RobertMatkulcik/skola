@@ -8,24 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Audit zmienIde o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat
 struktura DB - Diagram
-
-Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestn">
+Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestna">
 <meta property="og:type" content="article">
 <meta property="og:title" content="audit_trigger">
 <meta property="og:url" content="http://matkulcik.eu/skola/2017/03/16/audit-trigger/index.html">
 <meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
 <meta property="og:description" content="Audit zmienIde o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat
 struktura DB - Diagram
-
-Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestn">
+Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestna">
 <meta property="og:image" content="http://matkulcik.eu/skola/img_clanky/audit_trigger_diagram.png">
-<meta property="og:updated_time" content="2017-03-16T22:40:07.385Z">
+<meta property="og:image" content="http://matkulcik.eu/skola/../images/audit_trigger_diagram.png">
+<meta property="og:updated_time" content="2017-03-16T22:41:53.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="audit_trigger">
 <meta name="twitter:description" content="Audit zmienIde o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat
 struktura DB - Diagram
-
-Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestn">
+Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestna">
 <meta name="twitter:image" content="http://matkulcik.eu/skola/img_clanky/audit_trigger_diagram.png">
     
     
@@ -162,8 +160,7 @@ Vytvorenie DB a tabuliek1234567891011121314CREATE TABLE vyplaty (  meno_zamestn"
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Audit-zmien"><span class="toc-number">1.</span> <span class="toc-text">Audit zmien</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#struktura-DB-Diagram"><span class="toc-number">1.1.</span> <span class="toc-text">struktura DB - Diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vytvorenie-DB-a-tabuliek"><span class="toc-number">1.2.</span> <span class="toc-text">Vytvorenie DB a tabuliek</span></a></li></ol></li></ol>
         </div>
         <h2 id="Audit-zmien"><a href="#Audit-zmien" class="headerlink" title="Audit zmien"></a>Audit zmien</h2><p>Ide o trigger ktory zazanaenava vsetky zmeny(Insert, delete, update) v tabulke vyplat</p>
-<h3 id="struktura-DB-Diagram"><a href="#struktura-DB-Diagram" class="headerlink" title="struktura DB - Diagram"></a>struktura DB - Diagram</h3><p><img src="img_clanky/audit_trigger_diagram.png" alt="audit_trigger_diagram"></p>
-
+<h3 id="struktura-DB-Diagram"><a href="#struktura-DB-Diagram" class="headerlink" title="struktura DB - Diagram"></a>struktura DB - Diagram</h3><p><img src="img_clanky/audit_trigger_diagram.png" alt="audit_trigger_diagram"><br><img src="../images/audit_trigger_diagram.png" alt="audit_trigger_diagram"><br></p>
 <h3 id="Vytvorenie-DB-a-tabuliek"><a href="#Vytvorenie-DB-a-tabuliek" class="headerlink" title="Vytvorenie DB a tabuliek"></a>Vytvorenie DB a tabuliek</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> vyplaty (</div><div class="line">  meno_zamestnanca <span class="built_in">TEXT</span> PRIMARY <span class="keyword">KEY</span>,</div><div class="line">  plat   <span class="built_in">INTEGER</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> vyplaty_zmeny_log (</div><div class="line">  pozmenene_uzivatelom <span class="built_in">TEXT</span>      <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_USER</span>,</div><div class="line">  datum_zmeny <span class="keyword">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  druh_operacie  <span class="built_in">TEXT</span>,</div><div class="line">  meno_zamestnanca   <span class="built_in">TEXT</span>,</div><div class="line">  stary_plat <span class="built_in">INTEGER</span>,</div><div class="line">  novy_plat <span class="built_in">INTEGER</span></div><div class="line">);</div></pre></td></tr></table></figure>
     </div>
 </article>

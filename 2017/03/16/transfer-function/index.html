@@ -21,7 +21,7 @@ Dostupné online:REXtester
 
 Struktúra DB">
 <meta property="og:image" content="http://matkulcik.eu/skola/skola/images/audit_trigger_diagram.png">
-<meta property="og:updated_time" content="2017-03-19T14:56:31.062Z">
+<meta property="og:updated_time" content="2017-03-19T15:06:14.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transakčná funkcia">
 <meta name="twitter:description" content="Transakčná funkciaJednoduchá funkcia ktorá pomaha pri transakciach penazi medzi dvoma uzivatelmi.Funkcia konroluje či je možne previest danu cistku a podobne.
@@ -168,7 +168,7 @@ Struktúra DB">
         </div>
         <h2 id="Transakcna-funkcia"><a href="#Transakcna-funkcia" class="headerlink" title="Transakčná funkcia"></a>Transakčná funkcia</h2><p>Jednoduchá funkcia ktorá pomaha pri transakciach penazi medzi dvoma uzivatelmi.<br>Funkcia konroluje či je možne previest danu cistku a podobne.</p>
 <blockquote>
-<p>Dostupné online:<br><a href="http://rextester.com/MEAX75387" target="_blank" rel="external">REXtester</a></p>
+<p>Dostupné online:<br><a href="http://rextester.com/KJZY21739" target="_blank" rel="external">REXtester</a></p>
 </blockquote>
 <h3 id="Struktura-DB-Diagram"><a href="#Struktura-DB-Diagram" class="headerlink" title="Struktúra DB - Diagram"></a>Struktúra DB - Diagram</h3><p><img src="/skola/images/audit_trigger_diagram.png" alt="audit_trigger_diagram"></p>
 <h3 id="Vytvorenie-tabuliek-a-ich-naplnenie"><a href="#Vytvorenie-tabuliek-a-ich-naplnenie" class="headerlink" title="Vytvorenie tabuliek a ich naplnenie"></a>Vytvorenie tabuliek a ich naplnenie</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ucty (</div><div class="line">  majitel_uctu <span class="built_in">TEXT</span>,</div><div class="line">  zostatok     <span class="built_in">NUMERIC</span>,</div><div class="line">  ciastka    <span class="built_in">NUMERIC</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ucty <span class="keyword">VALUES</span> (<span class="string">'Rob'</span>, <span class="number">100</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ucty <span class="keyword">VALUES</span> (<span class="string">'Maria'</span>, <span class="number">200</span>);</div></pre></td></tr></table></figure>

@@ -567,10 +567,10 @@ body {
   display: inline-block;
   float: left;
   margin-right: 10px;
-  background-repeat: no-repeat;
   background-size: 6em !important;
   width: 6.1em !important;
   height: 6em !important;
+  background-repeat: no-repeat;
   border-radius: 5px;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);

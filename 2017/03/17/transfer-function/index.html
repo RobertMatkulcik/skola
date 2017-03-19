@@ -20,8 +20,8 @@ Struktúra DB">
 Dostupné online:REXtester
 
 Struktúra DB">
-<meta property="og:image" content="http://matkulcik.eu/skola/skola/images/audit_trigger_diagram.png">
-<meta property="og:updated_time" content="2017-03-19T15:18:44.361Z">
+<meta property="og:image" content="http://matkulcik.eu/skola/skola/images/transfer_funciton_fiagram.png">
+<meta property="og:updated_time" content="2017-03-19T15:21:37.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transakčná funkcia">
 <meta name="twitter:description" content="Transakčná funkciaJednoduchá funkcia ktorá pomaha pri transakciach penazi medzi dvoma uzivatelmi.Funkcia konroluje či je možne previest danu cistku a podobne.
@@ -29,7 +29,7 @@ Struktúra DB">
 Dostupné online:REXtester
 
 Struktúra DB">
-<meta name="twitter:image" content="http://matkulcik.eu/skola/skola/images/audit_trigger_diagram.png">
+<meta name="twitter:image" content="http://matkulcik.eu/skola/skola/images/transfer_funciton_fiagram.png">
     
     
         
@@ -168,7 +168,7 @@ Struktúra DB">
 <blockquote>
 <p>Dostupné online:<br><a href="http://rextester.com/KJZY21739" target="_blank" rel="external">REXtester</a></p>
 </blockquote>
-<h3 id="Struktura-DB-Diagram"><a href="#Struktura-DB-Diagram" class="headerlink" title="Struktúra DB - Diagram"></a>Struktúra DB - Diagram</h3><p><img src="/skola/images/audit_trigger_diagram.png" alt="audit_trigger_diagram"></p>
+<h3 id="Struktura-DB-Diagram"><a href="#Struktura-DB-Diagram" class="headerlink" title="Struktúra DB - Diagram"></a>Struktúra DB - Diagram</h3><p><img src="/skola/images/transfer_funciton_fiagram.png" alt="audit_trigger_diagram"></p>
 <h3 id="Vytvorenie-tabulky-a-jej-naplnenie"><a href="#Vytvorenie-tabulky-a-jej-naplnenie" class="headerlink" title="Vytvorenie tabulky a jej naplnenie"></a>Vytvorenie tabulky a jej naplnenie</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ucty (</div><div class="line">  majitel_uctu <span class="built_in">TEXT</span>,</div><div class="line">  zostatok     <span class="built_in">NUMERIC</span>,</div><div class="line">  ciastka    <span class="built_in">NUMERIC</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ucty <span class="keyword">VALUES</span> (<span class="string">'Rob'</span>, <span class="number">100</span>);</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ucty <span class="keyword">VALUES</span> (<span class="string">'Maria'</span>, <span class="number">200</span>);</div></pre></td></tr></table></figure>
 <h3 id="Transakcia"><a href="#Transakcia" class="headerlink" title="Transakcia"></a>Transakcia</h3><p>Takto by vyzeralo prevedenie transakcie medzi dvoma učtami.<br> Na jeden ucet suma pribudne a z druheho ubudne.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> ucty</div><div class="line"><span class="keyword">SET</span> zostatok = zostatok - <span class="number">14.00</span></div><div class="line"><span class="keyword">WHERE</span> majitel_uctu = <span class="string">'Rob'</span>;</div><div class="line"><span class="keyword">UPDATE</span> ucty</div><div class="line"><span class="keyword">SET</span> zostatok = zostatok + <span class="number">14.00</span></div><div class="line"><span class="keyword">WHERE</span> majitel_uctu = <span class="string">'Maria'</span>;</div></pre></td></tr></table></figure></p>
 <h3 id="SQL-transakcia"><a href="#SQL-transakcia" class="headerlink" title="SQL transakcia"></a>SQL transakcia</h3><p>Riešenie pomocou UPDATE, má však veľa chýb. Ku príkladu, čo by sa stalo keby Rob nemal dostatok financií(kreditu) na učte? Jeho financie by šli do mínusu a to je nechcený stav. Existuje teda podľa môjho názoru zložité aplikačné riešenie, ktoré vidíme v nasledujúcom kóde:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> ciastka <span class="keyword">FROM</span> ucty <span class="keyword">WHERE</span> majitel_uctu = <span class="string">'Rob'</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line"><span class="comment">-- Tu aplikácia zistí či ma platca dostatok prostriedkov</span></div><div class="line"><span class="keyword">UPDATE</span> ucty <span class="keyword">SET</span> ciastka = ciastka - <span class="number">14.00</span> <span class="keyword">WHERE</span> majitel_uctu = <span class="string">'Bob'</span>;</div><div class="line"><span class="keyword">UPDATE</span> ucty <span class="keyword">SET</span> ciastka = ciastka + <span class="number">14.00</span> <span class="keyword">WHERE</span> majitel_uctu = <span class="string">'Mary'</span>;</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>

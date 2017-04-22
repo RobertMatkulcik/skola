@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=SK>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Procedurálne jazykyPre prácu s procedurálnymi jazykmi je potrebne poznať aspoň základné operácie v SQL. Ide  o špeciálne jazyky – napríklad PL/pgSQL - pre programovanie na strane databázového servera.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Procedurálne jazyky">
+<meta property="og:url" content="http://matkulcik.eu/skola/2017/04/22/Proc-languages01/index.html">
+<meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
+<meta property="og:description" content="Procedurálne jazykyPre prácu s procedurálnymi jazykmi je potrebne poznať aspoň základné operácie v SQL. Ide  o špeciálne jazyky – napríklad PL/pgSQL - pre programovanie na strane databázového servera.">
+<meta property="og:updated_time" content="2017-04-22T17:15:58.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Procedurálne jazyky">
+<meta name="twitter:description" content="Procedurálne jazykyPre prácu s procedurálnymi jazykmi je potrebne poznať aspoň základné operácie v SQL. Ide  o špeciálne jazyky – napríklad PL/pgSQL - pre programovanie na strane databázového servera.">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/skola/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/skola/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/skola/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Procedurálne jazyky</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/skola/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/skola/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/skola/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Príklady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/skola/2017/03/20/Audit-trigger-PL-Python/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&text=Procedurálne jazyky"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&is_video=false&description=Procedurálne jazyky"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Procedurálne jazyky&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&name=Procedurálne jazyky&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proceduralne-jazyky"><span class="toc-number">1.</span> <span class="toc-text">Procedurálne jazyky</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kedy-pouzivat-PL-jazyky"><span class="toc-number">1.1.</span> <span class="toc-text">Kedy používať PL jazyky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kedy-nepouzivat-PL-jazyky"><span class="toc-number">1.2.</span> <span class="toc-text">Kedy nepoužívať PL jazyky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proceduralne-jazyky-a-psql"><span class="toc-number">1.3.</span> <span class="toc-text">Procedurálne jazyky a psql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zdroje"><span class="toc-number">1.4.</span> <span class="toc-text">Zdroje:</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        
+    <h1 class="posttitle" itemprop="name headline">
+        Procedurálne jazyky
+    </h1>
+
+
+
+        <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+            
+            Procedúry a spúšťače v PostgreSQL
+            
+        </span>
+      </span>
+            
+    <div class="postdate">
+        <time datetime="2017-04-22T17:09:01.000Z" itemprop="datePublished">22-04-2017</time>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/skola/tags/teoria/">teoria</a>
+    </div>
+
+
+        </div>
+    </header>
+    
+
+    <div class="content" itemprop="articleBody">
+        <!--Table of content generator-->
+        <div id="toc">
+            <p>Obsah článku:</p>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proceduralne-jazyky"><span class="toc-number">1.</span> <span class="toc-text">Procedurálne jazyky</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kedy-pouzivat-PL-jazyky"><span class="toc-number">1.1.</span> <span class="toc-text">Kedy používať PL jazyky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kedy-nepouzivat-PL-jazyky"><span class="toc-number">1.2.</span> <span class="toc-text">Kedy nepoužívať PL jazyky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proceduralne-jazyky-a-psql"><span class="toc-number">1.3.</span> <span class="toc-text">Procedurálne jazyky a psql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zdroje"><span class="toc-number">1.4.</span> <span class="toc-text">Zdroje:</span></a></li></ol></li></ol>
+        </div>
+        <h2 id="Proceduralne-jazyky"><a href="#Proceduralne-jazyky" class="headerlink" title="Procedurálne jazyky"></a>Procedurálne jazyky</h2><p>Pre prácu s procedurálnymi jazykmi je potrebne poznať aspoň základné operácie v SQL. Ide  o špeciálne jazyky – napríklad PL/pgSQL - pre programovanie na strane databázového servera. PL/pgSQL je v PostgreSQL to, čo je PL/SQL pre Oracle alebo Transact/SQL v Microsoft SQL server. PL jazyky môžeme použiť na tvorbu funkcií, čo sú obalené sekvencie príkazov zapísaných vo vnútri SQL výrazu. Týmito funkciami sa rozširuje funkcionalita databázového servera. Tieto serverové rozšírenia sú taktiež známe pod menom vložené procedúry. Možnosti vytvárania vložených procedúr sa s každou novou verziou PostgreSQL zväčšujú. Aj v konkurenčných databázových serveroch je použitie procedurálnych jazykov pomerne rozšírené. FirebirdSQL ich používa od začiatku svojej existencie, MySQL umožňuje použitie vložených procedúr. Od 5. verzie a SQLite má jednoduchý nástroj v podobe uložených dotazov, ale je nutné nezabudnúť na zameranie SQLite. Vo svete komerčných DB serverov snáď nie je možné nájsť žiadny, ktorý by nepodporoval vložené procedúry. Obvyklým jazykom pre písanie týchto procedúr je PL/pgSQL, ktorý predstavuje nejakú nad množinu SQL. PostgreSQL je na tom ale ešte lepšie. Pre vložené procedúry je možné použiť jazyky PL/Perl, PL/Python, PL/Tcl, PL/Ruby, PL/v8(JavaScript), PL/sh, PL/PHP, PL/R alebo PL/Java. PostgreSQL používa syntaktický analyzátor (BISON) pre proces prekladu, čim umožňuje pridanie podpory pre ďalšie OpenSource jazyky.  O PL by sa dalo povedať následujúce: za prvé – je to extrémne zjednodušený programovací jazyk určený k písaniu funkcií rozširujúcich prostredie databázy, t. j. obsluha triggerov, vlastných funkcií a agregačných funkcií, za druhé – je veľmi dobre previazaný s prostredím databázy. Aspoň do doby než bude k dispozícii prekladač do C bude použitie PL vždy znižovať efektivitu databázového systému, na druhú stranu vďaka PL a jeho prepojeniu s PostgreSQL máme k dispozícii prostriedok, v ktorom jednoducho a prehľadne pracujeme s logickým modelom databázy aplikácie a ktorý sa naviac, vďaka svojej jednoduchosti dá jednoducho zvládnuť.</p>
+<h3 id="Kedy-pouzivat-PL-jazyky"><a href="#Kedy-pouzivat-PL-jazyky" class="headerlink" title="Kedy používať PL jazyky"></a>Kedy používať PL jazyky</h3><p>SQL príkazy sú na serveri spustené individuálne, každý dopyt je preto poslaný jeden po druhom na server, kde sa analyzuje, spracuje a vráti ako výsledok. Samozrejme sa nejedná o chybu, ale pokiaľ chceme spustiť tisíce príkazov denne, je rozumnejšie použiť PL funkciu. Presnejšie povedané, jedná sa o vloženú procedúru, ktorá môže vykonávať všetky SQL príkazy v kontrolnom cykle. Štruktúry cyklu ako WHILE a FOR, sa môžu vykonať na základe rôznych podmienok spolu s premennými, ktoré deklarujeme na uloženie výsledkov pre neskoršie spracovanie. Navyše je možné spracovávať chyby a výnimky. PL jazyky dokážu zapuzdriť SQL a implementovať rôzne programovacie techniky rôznych jazykov. Funkcie je možné napísať v rôznych programovacích jazykoch, ako je Perl, Python, Java, a podobne. Tieto funkcie môžu spúšťať ďalšie funkcie, môžu napríklad obsahovať čiastkové bloky vo vnútri hlavného bloku. Vďaka čomu dokážeme výrazne ovplyvniť výkonnosť databázy.</p>
+<p>Pokiaľ máme časť kódu, funkčnosť, ktorá je v klientoch, je prepisovateľná. Ak má databázový server niekoľko rôznych klientov, ktorí pristupujú k jedinej databáze a často využívajú niektoré funkcie. Je výhodné tuto funkčnosť prepísať do vloženej procedúry, ktorú máme uloženú na serveri. Zmena v tejto procedúre znamená zmenu pre všetkých klientov/užívateľov, nie je kvôli tomu nutné upravovať a  distribuovať užívateľom nové verzie klientských aplikácií. Pokiaľ robíme náročné operácie s dátami. Nakoľko, v binárnej aplikácií sú operácie rýchlejšie, než nascriptované na strane servera. Pokiaľ je funkčnosť na serveri, odpadne neustále analyzovanie dotazov poslaných na server, konvertácia premenných medzi serverom a klientskou aplikáciou a mimo iné sa výrazne zmenší zaťaženie medzi aplikáciou a serverom. Vložené procedúry sú uložené v databáze, pracujú s dátami presne tak, ako sú na serveri. Nielen  náročné operácie, ale aj zložité dotazy, prípadne dynamicky generované obmedzenia výberu, za použitia rozumných pravidiel, sú výbornou témou k použitiu vložených procedúr.</p>
+<p>Využitie uložených procedúr sa dá považovať za ďalší stupeň k viacvrstvovým aplikáciam. Zatiaľ čo niektoré aplikácie je možné napísať ako jednovrstvové (napr. väčšina hier), kde všetko rieši program, je manipulácia s databázami príklad dvojvrstvovej aplikácie, kde jedna vrstva je aplikácia ako taká a druhou vrstvou je databáza. Trojvrstvové aplikácie majú medzi klientskou časťou a databázovým serverom ešte aplikační server. Pochopiteľne existujú aj ďalšie vrstvy, ale to sa jedná, väčšinou, o rozvrstvenie aplikačného serveru. Použitie vložených procedúr sa dá považovať za dva a pol vrstvovú aplikáciu, niektoré časti kódu sú na serveri, ale nie je to plný aplikačný server.</p>
+<h3 id="Kedy-nepouzivat-PL-jazyky"><a href="#Kedy-nepouzivat-PL-jazyky" class="headerlink" title="Kedy nepoužívať PL jazyky"></a>Kedy nepoužívať PL jazyky</h3><p>Nie vždy je možné použiť vložené procedúry. Podmienkou pre prenesenie kódu do vložených procedúr je absolútna neinteraktivita a bezstavovosť. Nakoľko väčšina aplikácií istý stupeň interakcie vyžaduje, je nepravdepodobné a ako skúsenosti užívateľov napovedajú aj neefektívne písať aplikácie čisto v uložených procedúrach. SQL server nemôže nahradiť aplikačný server, iba čiastočne, a je na úvahe užívateľa, aby zvážil všetky pre a proti.</p>
+<p>Rovnako tak ako majú uložené procedúry svoje omedzenia ma svoje omedzenia jazyk PL/pgSQL. V  určitých prípadoch nie je možné PL/pgSQL použiť buď z nedostatočnosti jazyka (PL je príliš statický) alebo z dôvodu neefektivity.</p>
+<p>PL/pgSQL nie je vhodné používaťk kinicializácií veľkých polí — dôvodom je pomalý zápis do poľa. Je omnoho rýchlejšie prvky poľa vytvoriť pomocou konverzie tabuľky, ktorú vytvoríme SRF (set-returning function) funkciou na pole. Napríklad najrýchlejší spôsob vytvorenia poľa vzostupných hodnôt je SELECT ARRAY (SELECT * FROM generate_series(1,100));. Funkcia generate_series je SRF funkcia generujúca postupnosť hodnôt zo zadaného intervalu.1</p>
+<p>Rýchlosťou nevyniká ani iteračné zostavenie reťazca. Pokiaľ je funkcia príliš pomalá, je potrebné skúsiť následujúci trik. Svoju funkciu prevedieme na SRF funkciu - časť, kde zlučujeme reťazce nahradíme príkazom RETURN NEXT časť_reťazca. Konečné zlúčenie spustime mimo telo funkcie pomocou funkcie array_to_string.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> generuj_retazec(<span class="built_in">integer</span>)</div><div class="line">	<span class="keyword">RETURNS</span> SETOF <span class="built_in">varchar</span> <span class="keyword">AS</span> $$</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	<span class="keyword">FOR</span> _i <span class="keyword">IN</span> <span class="number">1</span> .. $<span class="number">1</span> <span class="keyword">LOOP</span></div><div class="line">		<span class="keyword">RETURN</span> <span class="keyword">NEXT</span> <span class="string">'&lt;item&gt;'</span>||_i||<span class="string">'&lt;/item&gt;'</span>;</div><div class="line">  	<span class="keyword">END</span> <span class="keyword">LOOP</span>;</div><div class="line">  	RETURN;</div><div class="line"><span class="keyword">END</span>; $$ LANGUAGE plpgsql;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> array_to_string(</div><div class="line">	  <span class="built_in">ARRAY</span>(<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> generuj_retazec(<span class="number">1000</span>)), <span class="string">''</span>);</div></pre></td></tr></table></figure></p>
+<p>PL/pgSQL nepodporuje žiadne I/O operácie, a ani sa nepredpokladá, že by ich v blízkej budúcnosti  podporoval - PL/pgSQL existuje iba v TRUSTED variante. Riešením je použitie niektorého z UNTRASTED jazykov ako je PL/Perl alebo PL/Python.</p>
+<p>PL/pgSQL nie je vhodný k návrhu univerzálnych triggerov. V PL/pgSQL neexistuje možnosť ako previesť hodnotu typu RECORD na pole (Položka typu RECORD je prístupná iba prostredníctvom statického identifikátoru známeho v dobe kompilácie, pole je prístupné prostredníctvom dynamického indexu). Totiž neexistuje žiadna možnosť ako dynamicky iterovať cez všetky položky typu RECORD, alebo dynamicky pristupovať k typu RECORD. Riešením je opäť využiť iný programovací jazyk, tentokrát však postačia TRUSTED varianty.</p>
+<h3 id="Proceduralne-jazyky-a-psql"><a href="#Proceduralne-jazyky-a-psql" class="headerlink" title="Procedurálne jazyky a psql"></a>Procedurálne jazyky a psql</h3><p>Pre uľahčenie a sprehľadnenie práce s PL jazykmi v nástroji psql, môžeme použiť špeciálne psql príkazy.</p>
+<p>Zoznam užívateľom vytvorených funkcií:<br>    \df<br>Podrobnejšie informácie:<br>    \df+<br>Otvorí danú funkciu v editore:<br>    \ef meno_funkcie<br>Zoznam event triggerov:<br>    \dy<br>Zoznam nainštalovaných procedurálnych jazykov:<br>    \dL<br>Zoznam nainštalovaných rozšírení (extensions):<br>    \dx<br>Zapnutie/vypnutie rozšíreného výpisu:<br>    \x<br>Automatické zapnutie rozšíreného výpisu:<br>    \x auto<br>Watcher spustí predtým zadaný príkaz SELECT implicitne každé 2 sec:<br>    \watch<br>Vráti časovú dĺžku trvania danej operácie:<br>    \timing on<br>Umožňuje zadávanie SQL dotazov v predvolenom editore<br>    \e<br>Spustí a vykoná SQL príkazy v súbore:<br>    \i meno_súboru.sql</p>
+<h3 id="Zdroje"><a href="#Zdroje" class="headerlink" title="Zdroje:"></a>Zdroje:</h3><p><a href="https://www.root.cz/clanky/plpgsql-prakticky/" target="_blank" rel="external">https://www.root.cz/clanky/plpgsql-prakticky/</a><br><a href="http://postgresql.ok.cz/doc/plpgsql.html" target="_blank" rel="external">http://postgresql.ok.cz/doc/plpgsql.html</a><br><a href="http://www.linuxsoft.cz/article.php?id_article=1426" target="_blank" rel="external">http://www.linuxsoft.cz/article.php?id_article=1426</a></p>
+
+    </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Príklady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proceduralne-jazyky"><span class="toc-number">1.</span> <span class="toc-text">Procedurálne jazyky</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kedy-pouzivat-PL-jazyky"><span class="toc-number">1.1.</span> <span class="toc-text">Kedy používať PL jazyky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kedy-nepouzivat-PL-jazyky"><span class="toc-number">1.2.</span> <span class="toc-text">Kedy nepoužívať PL jazyky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proceduralne-jazyky-a-psql"><span class="toc-number">1.3.</span> <span class="toc-text">Procedurálne jazyky a psql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zdroje"><span class="toc-number">1.4.</span> <span class="toc-text">Zdroje:</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&text=Procedurálne jazyky"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&is_video=false&description=Procedurálne jazyky"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Procedurálne jazyky&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&title=Procedurálne jazyky"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/22/Proc-languages01/&name=Procedurálne jazyky&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Róbert Matkulčík
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Príklady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/skola/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/skola/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

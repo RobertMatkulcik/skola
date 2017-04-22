@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang=SK>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Triggery V PL/pgSQL„Je to mechanizmus, ktorý pri splnení dopredu definovaných podmienok automaticky zabezpečí vykonanie dopredu definovanej akcie“. 1Hlavným rozdielom medzi funkciou a triggerom je, že">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PL/pgSQL triggery">
+<meta property="og:url" content="http://matkulcik.eu/skola/2017/04/23/PL-pgSQL-Trigger03/index.html">
+<meta property="og:site_name" content="Procedúry a spúšťače v PostgreSQL">
+<meta property="og:description" content="Triggery V PL/pgSQL„Je to mechanizmus, ktorý pri splnení dopredu definovaných podmienok automaticky zabezpečí vykonanie dopredu definovanej akcie“. 1Hlavným rozdielom medzi funkciou a triggerom je, že">
+<meta property="og:updated_time" content="2017-04-22T23:15:56.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PL/pgSQL triggery">
+<meta name="twitter:description" content="Triggery V PL/pgSQL„Je to mechanizmus, ktorý pri splnení dopredu definovaných podmienok automaticky zabezpečí vykonanie dopredu definovanej akcie“. 1Hlavným rozdielom medzi funkciou a triggerom je, že">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/skola/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/skola/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/skola/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>PL/pgSQL triggery</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/skola/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/skola/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/skola/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Príklady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/skola/2017/04/23/PL-Python/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&text=PL/pgSQL triggery"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&is_video=false&description=PL/pgSQL triggery"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PL/pgSQL triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&name=PL/pgSQL triggery&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Triggery-V-PL-pgSQL"><span class="toc-number">1.</span> <span class="toc-text">Triggery V PL/pgSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Triggery-s-WHEN"><span class="toc-number">1.1.</span> <span class="toc-text">Triggery s WHEN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDL-Event-Triggery"><span class="toc-number">1.2.</span> <span class="toc-text">DDL - Event Triggery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zdroje"><span class="toc-number">1.3.</span> <span class="toc-text">Zdroje:</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        
+    <h1 class="posttitle" itemprop="name headline">
+        PL/pgSQL triggery
+    </h1>
+
+
+
+        <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+            
+            Procedúry a spúšťače v PostgreSQL
+            
+        </span>
+      </span>
+            
+    <div class="postdate">
+        <time datetime="2017-04-22T22:56:21.000Z" itemprop="datePublished">23-04-2017</time>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/skola/tags/teoria/">teoria</a>
+    </div>
+
+
+        </div>
+    </header>
+    
+
+    <div class="content" itemprop="articleBody">
+        <!--Table of content generator-->
+        <div id="toc">
+            <p>Obsah článku:</p>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Triggery-V-PL-pgSQL"><span class="toc-number">1.</span> <span class="toc-text">Triggery V PL/pgSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Triggery-s-WHEN"><span class="toc-number">1.1.</span> <span class="toc-text">Triggery s WHEN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDL-Event-Triggery"><span class="toc-number">1.2.</span> <span class="toc-text">DDL - Event Triggery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zdroje"><span class="toc-number">1.3.</span> <span class="toc-text">Zdroje:</span></a></li></ol></li></ol>
+        </div>
+        <h2 id="Triggery-V-PL-pgSQL"><a href="#Triggery-V-PL-pgSQL" class="headerlink" title="Triggery V PL/pgSQL"></a>Triggery V PL/pgSQL</h2><p>„Je to mechanizmus, ktorý pri splnení dopredu definovaných podmienok automaticky zabezpečí vykonanie dopredu definovanej akcie“. 1<br>Hlavným rozdielom medzi funkciou a triggerom je, že funkcie sa môžu volať na serveri a vykonávajú nejaké operácie, voláme ich keď chceme získať nejaké výsledky, zatiaľ čo triggery môžu predstavovať “obmedzenie” a volajú sa pri modifikácii tabuľky. Oboje se používa pre zjednodušenie práce s databázou, pretože sú funkcie uložené na serveri a nemusia sa zakaždým zložito riešiť na strane klienta. V databázach je trigger objekt,  prepojený na tabuľku. Ten sa aktivuje, keď nastane určitá udalosť (napr. INSERT, UPDATE či DELETE) v tabuľke databázy. Príkaz CREATE TRIGGER vytvorí nový spúšťač. Podľa syntaxe:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> meno</div><div class="line">	&#123; <span class="keyword">BEFORE</span> | <span class="keyword">AFTER</span> | INSTEAD <span class="keyword">OF</span> &#125;</div><div class="line">	&#123; <span class="keyword">event</span> [ <span class="keyword">OR</span> ... ] &#125;</div><div class="line">	<span class="keyword">ON</span> meno_tabulky</div><div class="line">	[ <span class="keyword">FOR</span> [ <span class="keyword">EACH</span> ] &#123; <span class="keyword">ROW</span> | <span class="keyword">STATEMENT</span> &#125; ]</div><div class="line">	<span class="keyword">EXECUTE</span> <span class="keyword">PROCEDURE</span> meno_funkcie ( argumenty )</div></pre></td></tr></table></figure></p>
+<p>Funkciu musíme priradiť triggeru a tabuľke príkazom CREATE TRIGGER. Pri definovaní triggera musíme zadať, akej tabuľky alebo pohľadu sa trigger týka, kedy sa má spustiť (pri akej udalosti) a akú funkciu má spustiť. Je teda potrebné najprv deklarovať funkciu, ktorú chceme spustiť a až potom trigger. Funkcia nemôže mať žiadny argument a musí vracať dátový typ trigger. Argumenty triggera sú totiž funkcii odovzdané cez špeciálne premenné TG_ARGV. V zásade môžeme vytvoriť dva základné typy: tie, ktoré sa vykonajú pred spustením príkazu (BEFORE), vyvolaného triggerom, a tie, ktoré sa spúšťajú po vykonaní príkazu (AFTER). Akciou, ktorá trigger spustí, môže byť INSERT, UPDATE, DELETE alebo TRUNCATE. Pokiaľ napríklad vložíme do tabuľky nejaké dáta, spustia sa triggery definované pre túto tabuľku, ktoré sa majú spustiť pri udalosti napr.  INSERT. Trigger môže spúšťať funkciu pre každý riadok tabuľky (v ktorej došlo k udalosti, ktorá trigger spustila), t. j. FOR EACH ROW, alebo iba raz pre spustený SQL príkaz, t. j. FOR EACH STATEMENT. Trigger je možné zrušiť pomocou príkazu:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> meno_triggera <span class="keyword">on</span> meno_tabulky;</div></pre></td></tr></table></figure></p>
+<p>Každá trigger funkcia musí spĺňať nasledujúce požiadavky:<br>Návratový typ:  Funkcia  musí vracať dátový typ trigger.<br>Návratová hodnota: Trigger funkcia musí vracať určitú hodnotu.<br>Žiadne argumenty: Argumenty triggera sú funkcii odovzdané cez špeciálne premenné TG_ARGV.</p>
+<p>Triggery je možné z hľadiska použitia rozdeliť na 4 skupiny:</p>
+<p><code>Table-level triggers:</code><br>Vykoná aktivitu pred (BEFORE) alebo po (after) DML udalostiach ako vloženie (INSERT), aktualizácia (UPDATE) a zmazanie (DELETE).</p>
+<p><code>View-level triggers:</code><br>Používa sa pri pohľadoch (VIEW) často tu využívame nahrádzajúce (INSTEAD OFF) triggery. Prostredníctvom nich môžeme jednoducho vytvoriť aktualizovateľné pohľady. Tento druh triggera sa spustí namiesto danej akcie. Napríklad Instead UPDATE sa spustí namiesto pôvodného UPDATE. Takže musíme aktualizáciu zavolať z triggera.</p>
+<p><code>DDL Database-level triggers:</code><br>Dokážu sa aktivovať po zapnutí, či vypnutí databázy. Pre príklad, keď databáza štartuje, môžeme spustiť príkazy na test dostupnosti ostatných databáz alebo web. služieb. Pred vypnutím DB, môžeme upozorniť ďalšie databázy a webové služby, že databáza bude offline.</p>
+<p><code>Session-level triggers:</code><br>Využívame ich na ukladanie špecifickych informácií. Ako je prihlasovanie/odhlasovanie užívateľov, poprípade môžeme spustiť kód, ktorý obsahuje preferencie užívateľa a načíta ich do pamäte pre rýchlejší prístup. Po ukončení session, môže trigger ukladať tieto preferencie pre budúce použitie.2</p>
+<p>Trigger funkcia má po svojom spustení automaticky vytvorené niekoľko špeciálnych premenných:<br><code>NEW</code><br>Obsahuje riadok s novou verziou hodnôt (iba pre INSERT a UPDATE pri akcií DELETE je NULL).<br><code>OLD</code><br>Obsahuje starý riadok (pred modifikáciou / zmazaním). Pri akcií INSERT je NULL.<br><code>TG_NAME</code><br>Meno triggera.<br><code>TG_TABLE_NAME</code><br>Meno tabuľky, nad ktorou sa trigger spúšťa.<br><code>TG_RELNAME</code><br>Nesie názov tabuľky prevedený na malé písmena, na ktorej sa trigger spustil.<br><code>TG_OP</code><br>Meno akcie, ktorá trigger spustila (INSERT/UPDATE/DELETE/TRUNCATE).<br><code>TG_WHEN</code><br>Čas kedy sa trigger spustil (AFTER/BEFORE/INSTEAD OF)<br><code>TG_LEVEL</code><br>ROW alebo STATEMENT<br><code>TG_NARG</code><br>Počet argumentov odovzdaných funkcií.<br><code>TG_ARG[]</code><br>Argument triggera typu TEXT array. Indexovanie začína od nuly a zlý index vráti NULL.<br><code>TG_TAG</code><br>Používa sa u DDL event triggerov. Táto premenná obsahuje meno príkazu, ktorý spustil trigger.<br><code>TG_EVENT</code><br>Používa sa u DDL event triggerov. Premenná obsahuje meno udalosti, ktorým môže byť ddl_command_start , ddl_comman_end a sql_drop .</p>
+<p>Prvá vytvorená trigger funkcia bude zameraná na spätnú väzbu pre klienta databázy. Zakaždým keď sa trigger aktivuje poskytne spustená funkcia o sebe niekoľko informácií.</p>
+<p>Trigger funkcia pre ukážku špeciálnych premenných:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> notify_trigger()</div><div class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span> <span class="keyword">AS</span> $$</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	<span class="keyword">RAISE</span> <span class="keyword">NOTICE</span></div><div class="line">		<span class="string">'Ahoj, som funkcia - %,</span></div><div class="line">		zavolaná ako % % % na tabuľke %',</div><div class="line">			TG_NAME,</div><div class="line">			TG_LEVEL,</div><div class="line">			TG_WHEN,</div><div class="line">			TG_OP,</div><div class="line">			TG_TABLE_NAME;</div><div class="line">	RETURN NEW;</div><div class="line"><span class="keyword">END</span>;</div><div class="line">$$ LANGUAGE plpgsql;</div></pre></td></tr></table></figure></p>
+<p>Je potrebné aby funkcia vracala nejakú hodnotu a to aj v prípade, že to funkčne nie je potrebné. Bez tejto návratovej hodnoty by funkcia skončila chybou a operácia INSERT by sa nevykonala. Okrem RETURN NEW môžeme tiež použiť RETURN NULL, tieto návratové hodnoty sú pri AFTER triggeroch ignorované.<br>Vytvoríme trigger, ktorý spustí funkciu notify_trigger() raz pre každý riadok (EARCH ROW), po každom  pridaní (INSERT) nového riadka do tabuľky.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> notify_insert_trigger</div><div class="line">	<span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> tst_tabulka</div><div class="line">	<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></div><div class="line"><span class="keyword">EXECUTE</span> <span class="keyword">PROCEDURE</span> notify_trigger();</div></pre></td></tr></table></figure></p>
+<p>Použitie:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">teoria_tst=# INSERT INTO tst_tabulka</div><div class="line">	VALUES</div><div class="line">	(3, 'Ivan', 1990, 'Vavrecka 240',</div><div class="line">	'Namestovo', 'SK', '02901');</div><div class="line">NOTICE:</div><div class="line">Ahoj, som funkcia - notify_insert_trigger,</div><div class="line">zavolaná ako ROW AFTER INSERT na tabuľke tst_tabulka</div><div class="line"> 1 row affected in 21ms</div><div class="line">INSERT 0 1</div></pre></td></tr></table></figure></p>
+<h3 id="Triggery-s-WHEN"><a href="#Triggery-s-WHEN" class="headerlink" title="Triggery s WHEN"></a>Triggery s WHEN</h3><p>Klauzulu WHEN používame pre spustenie triggera s podmienkou, pri ktorej sa má trigger spustiť. WHEN je podobný WHERE v SQL dotazoch. Podmienka sa musí vyhodnotiť ako TRUE, pokiaľ sa vyhodnotí FLASE funkcia sa nespustí. Môžeme ju použiť, pokiaľ chceme spustiť trigger funkciu iba za určitej podmienky. Napríklad pokiaľ pozmeníme niektoré riadky v tabuľke alebo pokiaľ chceme funkciu používať iba v určitom časovom rozpätí.1<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> sprava_o_zruseni()</div><div class="line"><span class="keyword">RETURNS</span> <span class="keyword">TRIGGER</span> <span class="keyword">AS</span> $$</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">	<span class="keyword">RAISE</span> <span class="keyword">EXCEPTION</span> <span class="string">'%'</span>, TG_ARGV[<span class="number">0</span>];</div><div class="line">	RETURN NULL;</div><div class="line"><span class="keyword">END</span>;</div><div class="line">$$ LANGUAGE plpgsql;</div></pre></td></tr></table></figure></p>
+<p>Predošlý kód vyvodí výnimku spolu s reťazcom, ktorý funkcia dostane ako argument triggera. Treba si všimnúť, že TG_ARGV[0] sa nemôže použiť priamo ako chybová správa, nakoľko syntax príkazu RAISE požaduje reťazec.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> ziadne_upravy_v_piatok_po_obede</div><div class="line">	<span class="keyword">BEFORE</span> <span class="keyword">INSERT</span> <span class="keyword">OR</span> <span class="keyword">UPDATE</span> <span class="keyword">OR</span> <span class="keyword">DELETE</span> <span class="keyword">OR</span> <span class="keyword">TRUNCATE</span></div><div class="line">	<span class="keyword">ON</span> tst_tabulka</div><div class="line">	<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">STATEMENT</span></div><div class="line">	<span class="keyword">WHEN</span> (<span class="keyword">CURRENT_TIME</span> &gt; <span class="string">'12:00'</span></div><div class="line">	<span class="keyword">AND</span> <span class="keyword">extract</span>(DOW <span class="keyword">from</span> <span class="keyword">CURRENT_TIMESTAMP</span>)= <span class="number">5</span>)</div><div class="line"><span class="keyword">EXECUTE</span> <span class="keyword">PROCEDURE</span></div><div class="line">sprava_o_zruseni(<span class="string">'Prepáčte ale v piatok po obede nie je možné zmeniť tabuľku tst_tabulka!'</span>);</div></pre></td></tr></table></figure></p>
+<p>Spustenie triggera (v piatok po obede):<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">teoria_tst=# INSERT INTO tabulka_tst</div><div class="line">VALUES</div><div class="line">(4, 'Igor', 1990, 'Vavrecka 240',</div><div class="line"> 'Namestovo', 'SK', '02901');</div><div class="line">ERROR:  Prepáčte ale v piatok po obede</div><div class="line">nie je možné zmeniť tabuľku tst_tabulka!</div></pre></td></tr></table></figure></p>
+<h3 id="DDL-Event-Triggery"><a href="#DDL-Event-Triggery" class="headerlink" title="DDL - Event Triggery"></a>DDL - Event Triggery</h3><p>PostgreSQL od verzie 9.3 dokáže spúšťať triggery aj pre DDL udalosti. Event triggery sú triggery aktivované DDL operáciou (CREATE, DROP, ALTER). Primárne majú slúžiť k nastaveniu prístupových práv (tam, kde prednastavené práva pre schému nestačí), k vytvorení (k aktualizácií) audit tabuliek a triggerov. Často nájdu svoje použitie pri výkonnostnej analýze, kde je možné zmerať čas vykonávania príkazov medzi ddl_command_start a ddl_command_end. Môžu pomôcť vyriešiť určité situácie s pridávaním, či rušením Large objektov, ktoré sa správajú ako samostatné objekty. Môžu pomôcť so správou užívateľov. Môžu aktivovať podrobnejšiu kontrolu vlastných funkcií (syntaxe, sémantiky, formátovania).1</p>
+<p>Je možne napísať EVENT TRIGGER pre 3 druhy event udalosti: ddl_command_start, ddl_command_end, sql_drop. Pokiaľ napr. napíšeme CREATE EVENT TRIGGER .. ON ddl_command_start …, spustí sa trigger pre všetky DDL, ktoré majú v tabuľke Event Trigger Firing Matrix v stĺpci ddl_command_start krížik. Výber DDL udalostí pre trigger je možné obmedziť klauzulou … WHEN TAG IN (‘CREATE TABLE’, ‘CREATE TABLE AS’). Event Triggery môžu využívať špeciálne premenné TG_TAG a TG_EVENT. Funkcia, ktorú DDL trigger spustí musí vracať typ EVENT_TRIGGER.2</p>
+<p>Event triggerry podporujú nasledujúce eventy:<br><code>ddl_command_start :</code><br>Táto udalosť nastane tesne pred spustením DDL príkazov CREATE, ALTER alebo DROP.<br><code>ddl_command_end :</code><br>Udalosť nastane po vykonaní príkazov CREATE , ALTER alebo DROP<br><code>sql_drop :</code><br>Táto udalosť nastane tesne pred spustením ddl_command_end eventu u príkazov na zrušenie databázových objektov.</p>
+<p>Zoznam všetkých podporovaných príkazov pre tieto tri udalosti je dostupný v oficiálnej dokumentácií postgreSQL. Na adrese: <a href="http://bit.ly/prikazyEventTrigger" target="_blank" rel="external">http://bit.ly/prikazyEventTrigger</a></p>
+<p>Ako ukážku použitia Event triggrov vytvoríme audit, ktorý zapisuje vybrané DDL akcie v databáze do tabuľky.<br>Vytvorenie tabuľky, do ktorej budú DDL akcie zapisované:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">teoria_tst=# CREATE TABLE ddl_audit</div><div class="line">(</div><div class="line">  event    TEXT,</div><div class="line">  prikaz  TEXT,</div><div class="line">  ddl_time TIMESTAMPTZ,</div><div class="line">  uzivatel      TEXT</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>Vytvorenie funkcie, ktorá zapíše údaje do tabuľky:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">FUNCTION</span> ddl_audit_funkcia()</div><div class="line"><span class="keyword">RETURNS</span> EVENT_TRIGGER</div><div class="line"><span class="keyword">AS</span> $$</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">  	<span class="keyword">INSERT</span> <span class="keyword">INTO</span> ddl_audit</div><div class="line">	<span class="keyword">VALUES</span> (tg_tag, tg_event, <span class="keyword">now</span>(), <span class="keyword">session_user</span>);</div><div class="line">  	RAISE NOTICE</div><div class="line">		'Akcia DDL bola zapisana <span class="keyword">do</span> <span class="keyword">audit</span> tabulky<span class="string">';</span></div><div class="line">END</div><div class="line">- -  SECURITY DEFINER</div><div class="line">-- nechceme aby ostatný užívatelia mali prístup k</div><div class="line">-- tabuľke ddl_audit</div><div class="line">$$ LANGUAGE plpgsql SECURITY DEFINER;</div></pre></td></tr></table></figure></p>
+<p>Vytvorenie event triggera, pri ktorom sa má funkcia spustiť:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">EVENT</span> <span class="keyword">TRIGGER</span> ddl_event</div><div class="line"><span class="keyword">ON</span> ddl_command_start</div><div class="line"><span class="keyword">WHEN</span> TAG <span class="keyword">IN</span></div><div class="line">(<span class="string">'CREATE TABLE'</span>, <span class="string">'DROP TABLE'</span>, <span class="string">'ALTER TABLE'</span>)</div><div class="line"><span class="keyword">EXECUTE</span> <span class="keyword">PROCEDURE</span> ddl_audit_funkcia();</div></pre></td></tr></table></figure></p>
+<p>Skúška príkladu:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE kontorola_ddl_eventu(</div><div class="line">  i INT</div><div class="line">);</div><div class="line"></div><div class="line">teoria_tst=# SELECT * FROM ddl_audit;</div><div class="line">-[ RECORD 1 ]------------------------</div><div class="line">event		| CREATE TABLE</div><div class="line">prikaz 		| ddl_command_start</div><div class="line">ddl_time 		| 2014-04-13 16:58:40.331385</div><div class="line">uzivatel		| postgres</div></pre></td></tr></table></figure></p>
+<h3 id="Zdroje"><a href="#Zdroje" class="headerlink" title="Zdroje:"></a>Zdroje:</h3><p>KRAJČI, S. 2005. Databázové systémy. Košice :<br>UPJŠ Košice, 2005. 270s.</p>
+<p><a href="http://www.sallyx.org/sally/psql/triggery.php?showAdds=0" target="_blank" rel="external">http://www.sallyx.org/sally/psql/triggery.php?showAdds=0</a></p>
+<p><a href="http://postgres.cz/wiki/PostgreSQL_9.3_(2013" target="_blank" rel="external">http://postgres.cz/wiki/PostgreSQL_9.3_(2013</a>)</p>
+
+    </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Príklady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Triggery-V-PL-pgSQL"><span class="toc-number">1.</span> <span class="toc-text">Triggery V PL/pgSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Triggery-s-WHEN"><span class="toc-number">1.1.</span> <span class="toc-text">Triggery s WHEN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDL-Event-Triggery"><span class="toc-number">1.2.</span> <span class="toc-text">DDL - Event Triggery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zdroje"><span class="toc-number">1.3.</span> <span class="toc-text">Zdroje:</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&text=PL/pgSQL triggery"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&is_video=false&description=PL/pgSQL triggery"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PL/pgSQL triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&name=PL/pgSQL triggery&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Róbert Matkulčík
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/skola/">Home</a></li>
+         
+          <li><a href="/skola/tags/teoria">Teória</a></li>
+         
+          <li><a href="/skola/tags/priklady">Príklady</a></li>
+         
+          <li><a href="/skola/archives/">Archív</a></li>
+         
+          <li><a href="https://github.com/RobqFakulcik/skola">Hosted by GitHub</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/skola/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/skola/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

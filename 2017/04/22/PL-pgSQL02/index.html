@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Funkcie a triggery v procedurálnom jazyku PL/pgSQL. Programovanie na strane databázového servera PostgreSQL.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PL/pgSQL">
+<meta property="og:title" content="02 PL/pgSQL">
 <meta property="og:url" content="http://matkulcik.eu/skola/2017/04/22/PL-pgSQL02/index.html">
 <meta property="og:site_name" content="Procedúry a triggery v PostgreSQL">
 <meta property="og:description" content="Funkcie a triggery v procedurálnom jazyku PL/pgSQL. Programovanie na strane databázového servera PostgreSQL.">
-<meta property="og:updated_time" content="2017-04-23T01:24:18.556Z">
+<meta property="og:updated_time" content="2017-04-27T00:44:17.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PL/pgSQL">
+<meta name="twitter:title" content="02 PL/pgSQL">
 <meta name="twitter:description" content="Funkcie a triggery v procedurálnom jazyku PL/pgSQL. Programovanie na strane databázového servera PostgreSQL.">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>PL/pgSQL</title>
+    <title>02 PL/pgSQL</title>
     <!-- styles -->
     <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&text=PL/pgSQL"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&is_video=false&description=PL/pgSQL"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=PL/pgSQL&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&name=PL/pgSQL&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&text=02 PL/pgSQL"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&is_video=false&description=02 PL/pgSQL"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=02 PL/pgSQL&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&name=02 PL/pgSQL&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
     <header>
         
     <h1 class="posttitle" itemprop="name headline">
-        PL/pgSQL
+        02 PL/pgSQL
     </h1>
 
 
@@ -320,15 +320,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&text=PL/pgSQL"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&is_video=false&description=PL/pgSQL"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=PL/pgSQL&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=PL/pgSQL"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&name=PL/pgSQL&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&text=02 PL/pgSQL"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&is_video=false&description=02 PL/pgSQL"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=02 PL/pgSQL&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&title=02 PL/pgSQL"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/22/PL-pgSQL02/&name=02 PL/pgSQL&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

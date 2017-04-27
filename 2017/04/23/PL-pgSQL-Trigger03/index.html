@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Triggery v procedurálnom jazyku PL/pgSQL. Programovanie na strane databázového servera PostgreSQL.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PL/pgSQL triggery">
+<meta property="og:title" content="03 PL/pgSQL triggery">
 <meta property="og:url" content="http://matkulcik.eu/skola/2017/04/23/PL-pgSQL-Trigger03/index.html">
 <meta property="og:site_name" content="Procedúry a triggery v PostgreSQL">
 <meta property="og:description" content="Triggery v procedurálnom jazyku PL/pgSQL. Programovanie na strane databázového servera PostgreSQL.">
-<meta property="og:updated_time" content="2017-04-23T01:24:18.544Z">
+<meta property="og:updated_time" content="2017-04-27T00:44:17.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PL/pgSQL triggery">
+<meta name="twitter:title" content="03 PL/pgSQL triggery">
 <meta name="twitter:description" content="Triggery v procedurálnom jazyku PL/pgSQL. Programovanie na strane databázového servera PostgreSQL.">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>PL/pgSQL triggery</title>
+    <title>03 PL/pgSQL triggery</title>
     <!-- styles -->
     <link rel="stylesheet" href="/skola/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/skola/lib/meslo-LG/styles.css">
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&text=PL/pgSQL triggery"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&is_video=false&description=PL/pgSQL triggery"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=PL/pgSQL triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&name=PL/pgSQL triggery&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&text=03 PL/pgSQL triggery"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&is_video=false&description=03 PL/pgSQL triggery"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=03 PL/pgSQL triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&name=03 PL/pgSQL triggery&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
     <header>
         
     <h1 class="posttitle" itemprop="name headline">
-        PL/pgSQL triggery
+        03 PL/pgSQL triggery
     </h1>
 
 
@@ -213,15 +213,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&text=PL/pgSQL triggery"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&is_video=false&description=PL/pgSQL triggery"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=PL/pgSQL triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=PL/pgSQL triggery"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&name=PL/pgSQL triggery&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&text=03 PL/pgSQL triggery"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&is_video=false&description=03 PL/pgSQL triggery"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=03 PL/pgSQL triggery&body=Check out this article: http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&title=03 PL/pgSQL triggery"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://matkulcik.eu/skola/skola/2017/04/23/PL-pgSQL-Trigger03/&name=03 PL/pgSQL triggery&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

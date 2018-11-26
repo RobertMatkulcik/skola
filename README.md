@@ -1,4 +1,4 @@
-# skola
+# Škola
 Triggery pre PostgreSQL
 
 
